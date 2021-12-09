@@ -1,35 +1,17 @@
-import { CustomNumber } from './custom-number.types'
+import { CustomOperation } from './custom-number.types'
 
-export class CustomInt implements CustomNumber<number> {
-  private number: number
-
-  constructor(number: number) {
-    this.number = number
-  }
-
-  static fromString(s: string): CustomInt {
+export const CustomInt: CustomOperation<number> = {
+  fromString: (s: string) => {
     const n = parseInt(s)
 
     if (isNaN(n)) {
       throw new Error('Not a number')
     }
 
-    return new CustomInt(n)
-  }
+    return n
+  },
 
-  add(n: CustomNumber<number>): CustomNumber<number> {
-    return new CustomInt(n.getValue() + this.getValue())
-  }
-
-  getValue(): number {
-    return this.number
-  }
-
-  multiply(n: CustomNumber<number>): CustomNumber<number> {
-    return new CustomInt(n.getValue() * this.getValue())
-  }
-
-  toString(): string {
-    return this.number.toString()
-  }
+  add: (n1: number, n2: number) => n1 + n2,
+  multiply: (n1: number, n2: number) => n1 * n2,
+  toString: (n: number) => n.toString()
 }

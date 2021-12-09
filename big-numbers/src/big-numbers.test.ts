@@ -1,19 +1,19 @@
-import { BigNumber } from './big-numbers'
+import { BigNumberOperation } from './big-numbers'
 
 describe('custom int test', () => {
   describe('from string test', () => {
     it('should return number if 0', () => {
       // Act
-      const n = BigNumber.fromString('0')
+      const n = BigNumberOperation.fromString('0')
 
       // Assert
-      expect(n.toString()).toEqual('0')
+      expect(BigNumberOperation.toString(n)).toEqual('0')
     })
 
     it('should throw error if not a number', () => {
       // Act
       try {
-        const n = BigNumber.fromString('toto')
+        const n = BigNumberOperation.fromString('toto')
       } catch (e) {
         // Assert
         expect(e).toEqual(new Error('Not a number'))
@@ -38,12 +38,12 @@ describe('custom int test', () => {
     useCases.forEach((useCase, index) => {
       it(`should match use case ${index}`, () => {
         // Act
-        const n1 = BigNumber.fromString(useCase.n1)
-        const n2 = BigNumber.fromString(useCase.n2)
-        const res = n1.add(n2)
+        const n1 = BigNumberOperation.fromString(useCase.n1)
+        const n2 = BigNumberOperation.fromString(useCase.n2)
+        const res = BigNumberOperation.add(n1, n2)
 
         // Assert
-        expect(res.toString()).toEqual(useCase.expected)
+        expect(BigNumberOperation.toString(res)).toEqual(useCase.expected)
       })
     })
   })
@@ -65,12 +65,12 @@ describe('custom int test', () => {
     useCases.forEach((useCase, index) => {
       it(`should match use case ${index}`, () => {
         // Act
-        const n1 = BigNumber.fromString(useCase.n1)
-        const n2 = BigNumber.fromString(useCase.n2)
-        const res = n1.multiply(n2)
+        const n1 = BigNumberOperation.fromString(useCase.n1)
+        const n2 = BigNumberOperation.fromString(useCase.n2)
+        const res = BigNumberOperation.multiply(n1, n2)
 
         // Assert
-        expect(res.toString()).toEqual(useCase.expected)
+        expect(BigNumberOperation.toString(res)).toEqual(useCase.expected)
       })
     })
   })

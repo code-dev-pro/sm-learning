@@ -7,7 +7,7 @@ describe('custom int test', () => {
       const n = CustomInt.fromString('0')
 
       // Assert
-      expect(n.getValue()).toEqual(0)
+      expect(n).toEqual(0)
     })
 
     it('should throw error if not a number', () => {
@@ -32,12 +32,12 @@ describe('custom int test', () => {
     useCases.forEach((useCase, index) => {
       it(`should match use case ${index}`, () => {
         // Act
-        const n1 = new CustomInt(useCase.n1)
-        const n2 = new CustomInt(useCase.n2)
-        const res = n1.add(n2)
+        const n1 = useCase.n1
+        const n2 = useCase.n2
+        const res = CustomInt.add(n1, n2)
 
         // Assert
-        expect(res.getValue()).toEqual(useCase.expected)
+        expect(res).toEqual(useCase.expected)
       })
     })
   })
@@ -53,12 +53,12 @@ describe('custom int test', () => {
     useCases.forEach((useCase, index) => {
       it(`should match use case ${index}`, () => {
         // Act
-        const n1 = new CustomInt(useCase.n1)
-        const n2 = new CustomInt(useCase.n2)
-        const res = n1.multiply(n2)
+        const n1 = useCase.n1
+        const n2 = useCase.n2
+        const res = CustomInt.multiply(n1, n2)
 
         // Assert
-        expect(res.getValue()).toEqual(useCase.expected)
+        expect(res).toEqual(useCase.expected)
       })
     })
   })

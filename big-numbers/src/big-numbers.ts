@@ -1,23 +1,18 @@
-import { CustomNumber } from './custom-number.types'
+import { CustomOperation } from './custom-number.types'
 
-export class BigNumber implements CustomNumber<any> {
-  static fromString(s: string): BigNumber {
-    return new BigNumber()
-  }
+export type BigNumber = any
 
-  add(n: CustomNumber<any>): CustomNumber<any> {
-    return new BigNumber()
-  }
+const fromString = (s: string) => undefined
 
-  getValue(): any {
-    return undefined
-  }
+const add = (n1: BigNumber, n2: BigNumber) => undefined
 
-  multiply(n: CustomNumber<any>): CustomNumber<any> {
-    return new BigNumber()
-  }
+const multiply = (n1: BigNumber, n2: BigNumber) => undefined
 
-  toString(): string {
-    return ''
-  }
+const toString = (n: BigNumber) => ''
+
+export const BigNumberOperation: CustomOperation<any> = {
+  fromString,
+  add,
+  multiply,
+  toString
 }
