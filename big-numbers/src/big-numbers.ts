@@ -10,7 +10,7 @@ const multiply = (n1: BigNumber, n2: BigNumber): BigNumber => undefined
 
 const toString = (n: BigNumber) => ''
 
-export const BigNumberOperation: CustomOperation<any> = {
+export const BigNumberOperation: CustomOperation<BigNumber> = {
   fromString,
   add,
   multiply,
