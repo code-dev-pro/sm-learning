@@ -31,34 +31,10 @@ const fromString = (s: string): string => {
 }
 
 /**
- * IsBigNumber retourne true si l'argument (nombre ou une chaîne de caractères) est supérieur à MAX.
+ * IsBigNumber retourne true si l'argument (une chaîne de caractères) est supérieur à MAX.
  * @param {BigNumber} n - BigNumber
  */
 const isBigNumber = (n: BigNumber): boolean => Number(n) > MAX
-
-/**
- * teste le signe de l'argument (nombre ou une chaîne de caractères), s'il est positif et le renvoie
- * @param {BigNumber} n - BigNumber
- * @returns Une fonction qui prend un nombre ou une chaîne de caractères et renvoie un nombre ou une chaîne de caractères
- */
-const isPositive = (n: BigNumber): boolean => {
-  // teste si le nombre est positif
-
-  return Number(n) > 0
-}
-
-/**
- * Teste si l'argument (nombre ou une chaîne de caractères) est un nombre entier et le renvoie s'il est
- * @param {BigNumber} n - BigNumber
- * @returns Une fonction qui prend un nombre ou une chaîne de caractères et renvoie un nombre ou une chaîne de caractères
- */
-const isInteger = (n: BigNumber): BigNumber => {
-  // teste si le nombre est un nombre entier
-  if (!Number.isInteger(n)) {
-    throw new Error('Not a integer')
-  }
-  return n
-}
 
 /**
  *  Converti en un tableau de caractères et inverse le tableau
