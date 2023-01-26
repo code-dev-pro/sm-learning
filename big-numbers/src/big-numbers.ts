@@ -16,7 +16,6 @@ import { CustomOperation } from './custom-number.types'
 
 export type BigNumber = string
 const MAX = Number.MAX_SAFE_INTEGER // 9007199254740991
-// JS ne peut pas représenter exactement des nombres entiers supérieurs à 'MAX'
 
 const toString = (n: string): string => n
 
@@ -46,7 +45,7 @@ const toArray = (n: BigNumber): string[] => {
 }
 
 /**
- *  Converti un tableau de nombres en chaîne de caractères
+ *  Converti un tableau de nombres renversé en chaîne de caractères
  * @param {BigNumber} n - BigNumber
  * @returns chaîne de caractères
  */
