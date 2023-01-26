@@ -8,12 +8,6 @@ import { CustomOperation } from './custom-number.types'
  * dans le cadre d'une addition, on peut avoir une addition de deux nombres posifis ou négatifs, pour la multiplicatoion, possible d'avoir un nombre positif ou négatif
  */
 
-/** WARNING
- * dans certains situations notamment avec des paires de très grands nombres
- * les algos montrent des limites. Les résulats retournés ne sont pas ceux attendus
- * Il faut probablement les faire évoluer ou s'appuyer sur bigInt pour traiter tous les cas.
- */
-
 export type BigNumber = string
 const MAX = Number.MAX_SAFE_INTEGER // 9007199254740991
 
@@ -45,7 +39,7 @@ const toArray = (n: BigNumber): string[] => {
 }
 
 /**
- *  Converti un tableau de nombres renversé en chaîne de caractères
+ *  Converti un tableau de nombres en chaîne de caractères
  * @param {BigNumber} n - BigNumber
  * @returns chaîne de caractères
  */
