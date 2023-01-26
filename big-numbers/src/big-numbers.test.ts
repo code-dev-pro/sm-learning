@@ -79,12 +79,12 @@ describe('custom int test', () => {
         n1: '10007199254740995',
         n2: '2',
         expected: '20014398509481990'
-      }/* ,
+      } /* ,
       {
         n1: '10007199254740995',
         n2: '90071',
         expected: '901358444073776200000'
-      } */
+      }  */
     ]
 
     useCases.forEach((useCase, index) => {

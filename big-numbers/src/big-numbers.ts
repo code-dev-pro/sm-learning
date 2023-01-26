@@ -8,6 +8,12 @@ import { CustomOperation } from './custom-number.types'
  * dans le cadre d'une addition, on peut avoir une addition de deux nombres posifis ou négatifs, pour la multiplicatoion, possible d'avoir un nombre positif ou négatif
  */
 
+/** WARNING
+ * dans certains situations notamment avec des paires de très grands nombres
+ * les algos montrent des limites. Les résulats retournés ne sont pas ceux attendus
+ * Il faut probablement les faire évoluer ou s'appuyer sur bigInt pour traiter tous les cas.
+ */
+
 export type BigNumber = string
 const MAX = Number.MAX_SAFE_INTEGER // 9007199254740991
 // JS ne peut pas représenter exactement des nombres entiers supérieurs à 'MAX'
@@ -35,12 +41,10 @@ const isBigNumber = (n: BigNumber): boolean => Number(n) > MAX
  * @param {BigNumber} n - BigNumber
  * @returns Une fonction qui prend un nombre ou une chaîne de caractères et renvoie un nombre ou une chaîne de caractères
  */
-const isPositive = (n: BigNumber): BigNumber => {
+const isPositive = (n: BigNumber): boolean => {
   // teste si le nombre est positif
-  if (Number(n) < 0) {
-    throw new Error('Not positive')
-  }
-  return n
+
+  return Number(n) > 0
 }
 
 /**
