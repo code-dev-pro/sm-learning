@@ -7,7 +7,7 @@ import { CustomOperation } from './custom-number.types'
  * À partir de quelle valeur, js considère q'un nombre est un grand nombre ?
  * dans le cadre d'une addition, on peut avoir une addition de deux nombres posifis ou négatifs, pour la multiplicatoion, possible d'avoir un nombre positif ou négatif
  */
-type ControlNumber = string | number
+
 export type BigNumber = string
 const MAX = Number.MAX_SAFE_INTEGER // 9007199254740991
 // JS ne peut pas représenter exactement des nombres entiers supérieurs à 'MAX'
@@ -26,16 +26,16 @@ const fromString = (s: string): string => {
 
 /**
  * IsBigNumber retourne true si l'argument (nombre ou une chaîne de caractères) est supérieur à MAX.
- * @param {ControlNumber} n - ControlNumber
+ * @param {BigNumber} n - BigNumber
  */
-const isBigNumber = (n: ControlNumber): boolean => Number(n) > MAX
+const isBigNumber = (n: BigNumber): boolean => Number(n) > MAX
 
 /**
  * teste le signe de l'argument (nombre ou une chaîne de caractères), s'il est positif et le renvoie
- * @param {ControlNumber} n - ControlNumber
+ * @param {BigNumber} n - BigNumber
  * @returns Une fonction qui prend un nombre ou une chaîne de caractères et renvoie un nombre ou une chaîne de caractères
  */
-const isPositive = (n: ControlNumber): ControlNumber => {
+const isPositive = (n: BigNumber): BigNumber => {
   // teste si le nombre est positif
   if (Number(n) < 0) {
     throw new Error('Not positive')
@@ -45,10 +45,10 @@ const isPositive = (n: ControlNumber): ControlNumber => {
 
 /**
  * Teste si l'argument (nombre ou une chaîne de caractères) est un nombre entier et le renvoie s'il est
- * @param {ControlNumber} n - ControlNumber
+ * @param {BigNumber} n - BigNumber
  * @returns Une fonction qui prend un nombre ou une chaîne de caractères et renvoie un nombre ou une chaîne de caractères
  */
-const isInteger = (n: ControlNumber): ControlNumber => {
+const isInteger = (n: BigNumber): BigNumber => {
   // teste si le nombre est un nombre entier
   if (!Number.isInteger(n)) {
     throw new Error('Not a integer')
@@ -58,16 +58,16 @@ const isInteger = (n: ControlNumber): ControlNumber => {
 
 /**
  *  Converti en un tableau de caractères et inverse le tableau
- * @param {ControlNumber} n - ControlNumber
+ * @param {BigNumber} n - BigNumber
  * @returns Tableau de chaîne de caractères
  */
-const toArray = (n: ControlNumber): string[] => {
+const toArray = (n: BigNumber): string[] => {
   return n.toString().split('').reverse()
 }
 
 /**
  *  Converti un tableau de nombres en chaîne de caractères
- * @param {ControlNumber} n - ControlNumber
+ * @param {BigNumber} n - BigNumber
  * @returns chaîne de caractères
  */
 const fromArrayToString = (n: number[]): string => {
