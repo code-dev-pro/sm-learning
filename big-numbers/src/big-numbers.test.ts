@@ -25,7 +25,7 @@ describe('custom int test', () => {
     // Arrange
     const useCases = [
       { n1: '0', n2: '0', expected: '0' },
-      { n1: '10', n2: '100', expected: '110' },
+      { n1: '10.4', n2: '100', expected: '110.4' },
       { n1: '1000', n2: '10000', expected: '11000' },
       { n1: '99', n2: '22', expected: '121' },
       {

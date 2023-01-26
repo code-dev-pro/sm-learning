@@ -57,7 +57,7 @@ const isInteger = (n: ControlNumber): ControlNumber => {
 }
 
 /**
- *  Convertit en un tableau de caractères et inverse le tableau
+ *  Converti en un tableau de caractères et inverse le tableau
  * @param {ControlNumber} n - ControlNumber
  * @returns Tableau de chaîne de caractères
  */
@@ -66,9 +66,9 @@ const toArray = (n: ControlNumber): string[] => {
 }
 
 /**
- *  Convertit en un tableau de caractères et inverse le tableau
+ *  Converti un tableau de nombres en chaîne de caractères
  * @param {ControlNumber} n - ControlNumber
- * @returns Tableau de chaîne de caractères
+ * @returns chaîne de caractères
  */
 const fromArrayToString = (n: number[]): string => {
   return n.reverse().join('')
