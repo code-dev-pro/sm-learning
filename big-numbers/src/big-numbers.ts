@@ -34,27 +34,49 @@ const isBigNumber = (n: BigNumber): boolean => Number(n) > MAX
  * @param {BigNumber} n - BigNumber
  * @returns Tableau de chaîne de caractères
  */
-const toArray = (n: BigNumber): string[] => {
-  return n.toString().split('').reverse()
-}
+const toArray = (n: BigNumber): string[] => n.toString().split('').reverse()
 
 /**
  *  Converti un tableau de nombres en chaîne de caractères
  * @param {BigNumber} n - BigNumber
  * @returns chaîne de caractères
  */
-const fromArrayToString = (n: number[]): string => {
-  return n.reverse().join('')
-}
+const fromArrayToString = (n: number[]): string => n.reverse().join('')
 
+const isNegative = (n: BigNumber) => n.includes('-')
+
+/**
+ * Additionne deux nombres positifs ou deux nombres négatifs (sous forme d'une chaîne de caractères) et retourne le résultat de l'addition de ces deux nombres
+ * @param {BigNumber} n1 - BigNumber
+ * @param {BigNumber} n2 - BigNumber
+ * @returns le résultat sous forme d'une chaîne de caractères
+ */
 const add = (n1: BigNumber, n2: BigNumber): BigNumber => {
-  if (!isBigNumber(n1) || !isBigNumber(n2)) {
+  let isOpNegative = false
+  let n1p = n1
+  let n2p = n2
+  if (
+    (isNegative(n1) || isNegative(n2)) &&
+    !isNegative(n1) &&
+    !isNegative(n2)
+  ) {
+    throw new Error(`One of number is negative ${n1} / ${n2}`)
+  }
+  if (isNegative(n1) && isNegative(n2)) {
+    isOpNegative = true
+    n1p = n1.split('-')[1]
+    n2p = n2.split('-')[1]
+  }
+
+  if (!isBigNumber(n1p) || !isBigNumber(n2p)) {
     console.log('Addition sans algo', n1, n2)
-    return (Number(n1) + Number(n2)).toString()
+    return isOpNegative
+      ? `-${(Number(n1p) + Number(n2p)).toString()}`
+      : (Number(n1p) + Number(n2p)).toString()
   } else {
     console.log('Addition avec algo pour', n1, n2)
-    const num1 = toArray(n1)
-    const num2 = toArray(n2)
+    const num1 = toArray(n1p)
+    const num2 = toArray(n2p)
     // Initialiser les variables pour le retenu et le résultat
     let carry = 0
     const result = []
@@ -73,15 +95,37 @@ const add = (n1: BigNumber, n2: BigNumber): BigNumber => {
     }
 
     // Convertir le tableau de résultats en chaîne de caractères
-    return fromArrayToString(result)
+    return isOpNegative
+      ? `-${fromArrayToString(result)}`
+      : fromArrayToString(result)
   }
 }
 
+/**
+ * Multiplie deux nombres quelque soit leur signe (sous forme d'une chaîne de caractères) et retourne le résultat de la multiplication de ces deux nombres
+ * @param {BigNumber} n1 - BigNumber
+ * @param {BigNumber} n2 - BigNumber
+ * @returns le résultat sous forme d'une chaîne de caractères
+ */
 const multiply = (n1: BigNumber, n2: BigNumber): BigNumber => {
-  if (Number(n1) > MAX || Number(n2) > MAX || Number(n1) * Number(n2) > MAX) {
-    console.log('Multiplication avec algo pour', n1, n2)
-    const num1 = toArray(n1)
-    const num2 = toArray(n2)
+  let isOpNegative = false
+  if (isNegative(n1) || isNegative(n2)) {
+    isOpNegative = true
+  }
+  if (isNegative(n1) && isNegative(n2)) {
+    isOpNegative = false
+  }
+  const n1p = isNegative(n1) ? n1.split('-')[1] : n1
+  const n2p = isNegative(n2) ? n2.split('-')[1] : n2
+
+  if (
+    Number(n1p) > MAX ||
+    Number(n2p) > MAX ||
+    Number(n1p) * Number(n2p) > MAX
+  ) {
+    console.log('Multiplication avec algo pour', n1p, n2p)
+    const num1 = toArray(n1p)
+    const num2 = toArray(n2p)
     const lgt1 = num1.length
     const lgt2 = num2.length
     const result = new Array(lgt1 + lgt2).fill(0)
@@ -102,11 +146,13 @@ const multiply = (n1: BigNumber, n2: BigNumber): BigNumber => {
     while (result[lgtr - 1] === 0) {
       result.pop()
     }
-    return fromArrayToString(result)
+    return isOpNegative
+      ? `-${fromArrayToString(result)}`
+      : fromArrayToString(result)
   } else {
-    console.log('Multiplication sans algo pour', n1, n2)
-    const result = parseFloat(n1.toString()) * parseFloat(n2.toString())
-    return result.toString()
+    console.log('Multiplication sans algo pour', n1p, n2p)
+    const result = parseFloat(n1p.toString()) * parseFloat(n2p.toString())
+    return isOpNegative ? `-${result.toString()}` : result.toString()
   }
 }
 
